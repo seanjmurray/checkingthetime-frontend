@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+  - '12'
+cache:
+  directories:
+    - node_modules
+script:
+  - npm run build
+deploy:
+  provider: pages
+  skip-cleanup: true
+  local_dir: public
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  target_branch: production
+  on:
+    branch: main
