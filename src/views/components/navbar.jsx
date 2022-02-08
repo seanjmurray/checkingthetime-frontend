@@ -1,13 +1,14 @@
 import React from 'react';
-import { Navbar, Nav, NavItem, NavLink } from 'react-bootstrap';
+import { Navbar, Nav, NavItem, NavLink, NavbarBrand } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 
 const NavBar = () => {
     return (
         <div>
             <Navbar className='justify-content-center' bg='dark' variant='dark'>
-                <Nav>
+                    <NavbarBrand>Checking the Time</NavbarBrand>
+                <Nav variant='pills'>
                     <NavItem>
                         <LinkContainer to='/'>
                             <NavLink>Home</NavLink>
@@ -26,6 +27,9 @@ const NavBar = () => {
                 </Nav>
         </Navbar>
         <Outlet />
+        <Navbar fixed='bottom' className='justify-content-center' bg='dark' variant='dark'>
+            <Navbar.Text>&copy; 2022 <a href='https://github.com/seanjmurray'>Sean Murray</a></Navbar.Text>
+        </Navbar>
         </div>
     )
 }

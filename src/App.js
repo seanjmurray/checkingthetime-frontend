@@ -10,12 +10,12 @@ import Profile from "./views/profile";
 const App = () => {
   return (
     <>
-    <NavBar />
-   <Routes>
-     <Route index element={<Home />} />
-     <Route path='feed' element={<Feed />} />  
-     <Route path='profile' element={<Profile />} />
-   </Routes>
+      <NavBar />
+        <Routes>
+        <Route index element={<Home />} />
+        <Route path='feed' element={<Feed />} />  
+        <Route path='profile' element={<Profile />} />
+      </Routes>
    </>
   );
 }
