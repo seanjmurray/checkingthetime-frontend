@@ -1,45 +1,44 @@
-<<<<<<< HEAD
-import { Card, Col } from "react-bootstrap";
+import { Accordion, Card, Col } from "react-bootstrap";
 
-const Watch = () => {
+const Watch = (props) => {
   return (
     <Col xl={3} lg={4} md={9} className="my-3">
       <Card>
-        <Card.Header>Test</Card.Header>
+        <Card.Header className="text-center" as="h5">
+          {props.title}
+        </Card.Header>
         <Card.Img
           className="p-1"
           src="https://via.placeholder.com/150"
         ></Card.Img>
-        <Card.Body>Test body</Card.Body>
+        <Card.Body>
+          <Accordion>
+            <Accordion.Item eventKey="0">
+              <Accordion.Header>Specs</Accordion.Header>
+              <Accordion.Body>
+                <ul>
+                  <b>Brand:</b> {props.brand}
+                </ul>
+                <ul>
+                  <b>Model:</b> {props.model}
+                </ul>
+                <ul>
+                  <b>Caliber:</b> {props.caliber}
+                </ul>
+                <ul>
+                  <b>Origin:</b> {props.origin}
+                </ul>
+              </Accordion.Body>
+            </Accordion.Item>
+            <Accordion.Item eventKey="1">
+              <Accordion.Header>Notes</Accordion.Header>
+              <Accordion.Body>{props.notes}</Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
+        </Card.Body>
       </Card>
     </Col>
   );
 };
-=======
-import { Card, CardImg, Col, Container, Row } from 'react-bootstrap'
-import CardHeader from 'react-bootstrap/esm/CardHeader'
-
-const Watch = () => {
-  return (
-    <Container fluid lg={10}>
-      <Row className="justify-content-center">
-        {Array.from({ length: 12 }).map((_, idx) => (
-          <Col sm={9} md={5} lg={3}>
-            <Card bg="light">
-              <CardHeader>Header</CardHeader>
-              <Col lg={10}>
-                <CardImg
-                  className="ml-auto"
-                  src="https://via.placeholder.com/100"
-                ></CardImg>
-              </Col>
-            </Card>
-          </Col>
-        ))}
-      </Row>
-    </Container>
-  )
-}
->>>>>>> ed33626b8aa06dcea4043fcb585c0040edff8ac1
 
 export default Watch;
