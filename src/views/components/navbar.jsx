@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 // Bootstrap
-import { Navbar, Nav, NavItem, NavLink, NavbarBrand } from 'react-bootstrap'
+import { Navbar, Nav, NavItem, NavLink, NavbarBrand } from "react-bootstrap";
 // React Router
-import { LinkContainer } from 'react-router-bootstrap'
-import { Outlet } from 'react-router-dom'
+import { LinkContainer } from "react-router-bootstrap";
+import { Outlet } from "react-router-dom";
 
 const NavBar = () => {
   return (
@@ -29,18 +29,8 @@ const NavBar = () => {
         </Nav>
       </Navbar>
       <Outlet />
-      <Navbar
-        fixed="bottom"
-        className="justify-content-center"
-        bg="dark"
-        variant="dark"
-      >
-        <Navbar.Text>
-          &copy; 2022 <a href="https://github.com/seanjmurray">Sean Murray</a>
-        </Navbar.Text>
-      </Navbar>
     </div>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;

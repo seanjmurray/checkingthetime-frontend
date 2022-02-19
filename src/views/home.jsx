@@ -7,7 +7,12 @@ const Home = () => {
     <>
       <h1>Home</h1>
       <Container sm={10}>
-        <Watch />
+        <Row>
+          <Watch />
+          <Watch />
+          <Watch />
+          <Watch />
+        </Row>
       </Container>
     </>
   );
