@@ -13,7 +13,7 @@ const Home = () => {
     axios.get(url).then((res) => {
       getWatches(res.data);
     });
-  });
+  }, []);
   return (
     <>
       <Container sm={10}>
