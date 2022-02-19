@@ -1,28 +1,26 @@
 // Components
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import Watch from "./components/card";
 
-const note =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-const watch = {
-  title: "test title",
-  img: "https://via.placeholder.com/150",
-  brand: "Test brand",
-  model: "test model",
-  caliber: "test caliber",
-  origin: "test origin",
-  notes: note,
-};
+const url = "http://localhost:8080/api/watches";
 
 const Home = () => {
+  const [watches, getWatches] = useState([]);
+
+  useEffect(() => {
+    axios.get(url).then((res) => {
+      getWatches(res.data);
+    });
+  });
   return (
     <>
       <Container sm={10}>
         <Row>
-          <Watch {...watch} />
-          <Watch {...watch} />
-          <Watch {...watch} />
-          <Watch {...watch} />
+          {watches.map((watch, i) => {
+            return <Watch {...watch} key={i} />;
+          })}
         </Row>
       </Container>
     </>
