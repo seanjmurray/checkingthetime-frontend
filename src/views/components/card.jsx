@@ -7,10 +7,7 @@ const Watch = (props) => {
         <Card.Header className="text-center" as="h5">
           {props.title}
         </Card.Header>
-        <Card.Img
-          className="p-1"
-          src="https://via.placeholder.com/150"
-        ></Card.Img>
+        <Card.Img className="p-1" src={props.img}></Card.Img>
         <Card.Body>
           <Accordion>
             <Accordion.Item eventKey="0">
