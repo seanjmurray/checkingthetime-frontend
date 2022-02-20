@@ -1,46 +1,36 @@
-import React from 'react'
+import React from "react";
 // Bootstrap
-import { Navbar, Nav, NavItem, NavLink, NavbarBrand } from 'react-bootstrap'
+import { Navbar, Nav } from "react-bootstrap";
 // React Router
-import { LinkContainer } from 'react-router-bootstrap'
-import { Outlet } from 'react-router-dom'
+import { LinkContainer } from "react-router-bootstrap";
+import { Outlet } from "react-router-dom";
 
 const NavBar = () => {
   return (
     <div>
       <Navbar className="justify-content-center" bg="dark" variant="dark">
-        <NavbarBrand>Checking the Time</NavbarBrand>
+        <Navbar.Brand>Checking the Time</Navbar.Brand>
         <Nav variant="pills">
-          <NavItem>
+          <Nav.Item>
             <LinkContainer to="/">
-              <NavLink>Home</NavLink>
+              <Nav.Link>Home</Nav.Link>
             </LinkContainer>
-          </NavItem>
+          </Nav.Item>
           {/* <NavItem>
                         <LinkContainer to='feed'>
                             <NavLink>Feed</NavLink>
                         </LinkContainer>
                     </NavItem> */}
-          <NavItem>
+          <Nav.Item>
             <LinkContainer to="profile">
-              <NavLink>Profile</NavLink>
+              <Nav.Link>Profile</Nav.Link>
             </LinkContainer>
-          </NavItem>
+          </Nav.Item>
         </Nav>
       </Navbar>
       <Outlet />
-      <Navbar
-        fixed="bottom"
-        className="justify-content-center"
-        bg="dark"
-        variant="dark"
-      >
-        <Navbar.Text>
-          &copy; 2022 <a href="https://github.com/seanjmurray">Sean Murray</a>
-        </Navbar.Text>
-      </Navbar>
     </div>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;
