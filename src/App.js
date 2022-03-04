@@ -6,6 +6,7 @@ import Footer from './views/components/footer'
 // Views
 import Home from './views/home'
 import Profile from './views/profile'
+import Upload from './views/upload'
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
       <Routes>
         <Route index element={<Home />} />
         <Route path="profile" element={<Profile />} />
+        <Route path='upload' element={<Upload />} />
       </Routes>
       <Footer />
     </>
