@@ -9,21 +9,18 @@ const NavBar = () => {
   return (
     <div>
       <Navbar className="justify-content-center" bg="dark" variant="dark">
-        <Navbar.Brand>Checking the Time</Navbar.Brand>
-        <Nav variant="pills">
-          <Nav.Item>
-            <LinkContainer to="/">
-              <Nav.Link>Home</Nav.Link>
-            </LinkContainer>
-          </Nav.Item>
-          {/* <NavItem>
-                        <LinkContainer to='feed'>
-                            <NavLink>Feed</NavLink>
-                        </LinkContainer>
-                    </NavItem> */}
+        <LinkContainer to="/">
+          <Navbar.Brand>Checking the Time</Navbar.Brand>
+        </LinkContainer>
+        <Nav variant="">
           <Nav.Item>
             <LinkContainer to="profile">
               <Nav.Link>Profile</Nav.Link>
+            </LinkContainer>
+          </Nav.Item>
+          <Nav.Item>
+            <LinkContainer to="upload">
+              <Nav.Link>Upload</Nav.Link>
             </LinkContainer>
           </Nav.Item>
         </Nav>
