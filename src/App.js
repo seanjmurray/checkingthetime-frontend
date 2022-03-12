@@ -12,11 +12,13 @@ const App = () => {
   return (
     <>
       <NavBar />
+    <div  className="min-vh-100">
       <Routes>
         <Route index element={<Home />} />
         <Route path="profile" element={<Profile />} />
         <Route path='upload' element={<Upload />} />
       </Routes>
+    </div>
       <Footer />
     </>
   )
