@@ -17,7 +17,7 @@ const Home = () => {
   return (
     <>
       <Container sm={10}>
-        <Row>
+        <Row className="justify-content-center">
           {watches.map((watch, i) => {
             return <Watch {...watch} key={i} />;
           })}

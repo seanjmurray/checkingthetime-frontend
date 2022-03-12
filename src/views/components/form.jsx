@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import axios from "axios";
 
 const watchObj = {
   title: "",
+  image: "",
   brand: "",
   model: "",
   caliber: "",
@@ -19,10 +21,20 @@ const UploadForm = () => {
     setWatch(obj);
     console.log(watch);
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios({
+      url: "http://localhost:8080/api/watches",
+      method: "POST",
+      data: {
+        watch,
+      },
+    }).then((res) => console.log(res));
+  };
 
   return (
     <>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Label>Title:</Form.Label>
           <Form.Control
@@ -33,7 +45,16 @@ const UploadForm = () => {
             onChange={(e) => handleInputs(e)}
           ></Form.Control>
         </Form.Group>
-        <Form.Group></Form.Group>
+        <Form.Group>
+          <Form.Label>Image:</Form.Label>
+          <Form.Control
+            id="image"
+            required
+            type="file"
+            accept="image/*"
+            onChange={(e) => handleInputs(e)}
+          ></Form.Control>
+        </Form.Group>
         <Form.Group>
           <Form.Label>Brand:</Form.Label>
           <Form.Control
