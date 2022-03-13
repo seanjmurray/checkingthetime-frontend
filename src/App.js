@@ -7,6 +7,7 @@ import Footer from './views/components/footer'
 import Home from './views/home'
 import Profile from './views/profile'
 import Upload from './views/upload'
+import Error from './views/error'
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route index element={<Home />} />
         <Route path="profile" element={<Profile />} />
         <Route path='upload' element={<Upload />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </div>
       <Footer />

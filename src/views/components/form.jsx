@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import axios from "axios";
+const IMG_API = process.env.REACT_APP_IMGUR_API;
+const CLIENT_ID = process.env.REACT_APP_IMGUR_CLIENT_ID;
 
 const watchObj = {
   title: "",
-  image: "",
   brand: "",
   model: "",
   caliber: "",
@@ -14,22 +15,48 @@ const watchObj = {
 
 const UploadForm = () => {
   const [watch, setWatch] = useState(watchObj);
+  const [watchPic, setWatchPic] = useState();
 
   const handleInputs = (e) => {
     const obj = watch;
-    obj[e.target.id] = e.target.value;
-    setWatch(obj);
-    console.log(watch);
+    if (e.target.id === "image") {
+      setWatchPic(e.target.files[0]);
+    } else {
+      obj[e.target.id] = e.target.value;
+      setWatch(obj);
+    }
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    const image = new FormData();
+    image.append("image", watchPic);
     axios({
-      url: "http://localhost:8080/api/watches",
+      url: IMG_API,
       method: "POST",
-      data: {
-        watch,
+      data: image,
+      headers: {
+        Authorization: `Client-ID ${CLIENT_ID}`,
+        "Content-Type": "multipart/form-data",
       },
-    }).then((res) => console.log(res));
+    }).then((res) => {
+      if (res.data.success) {
+        const obj = watch;
+        obj.image = res.data.data.link;
+        setWatch(obj);
+        axios({
+          url: "http://localhost:8080/api/watches",
+          method: "POST",
+          data: {
+            form: watch,
+          },
+        }).then((res) => {
+          console.log(res);
+        });
+      } else {
+        console.log(res);
+      }
+    });
   };
 
   return (
