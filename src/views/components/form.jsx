@@ -1,57 +1,52 @@
 import { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, ProgressBar } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
+// Hooks
+import useInputHandler from "../../hooks/inputs";
+//Env Vars
 const IMG_API = process.env.REACT_APP_IMGUR_API;
 const CLIENT_ID = process.env.REACT_APP_IMGUR_CLIENT_ID;
 
-const watchObj = {
-  title: "",
-  brand: "",
-  model: "",
-  caliber: "",
-  origin: "",
-  notes: "",
-};
-
 const UploadForm = () => {
-  const [watch, setWatch] = useState(watchObj);
-  const [watchPic, setWatchPic] = useState();
-
-  const handleInputs = (e) => {
-    const obj = watch;
-    if (e.target.id === "image") {
-      setWatchPic(e.target.files[0]);
-    } else {
-      obj[e.target.id] = e.target.value;
-      setWatch(obj);
-    }
-  };
+  const { handleInputs, setWatch, watch, watchPic } = useInputHandler();
+  const [uploaded, setUploaded] = useState([false, false]);
+  const [progress, setProgress] = useState(0);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const image = new FormData();
-    image.append("image", watchPic);
+    setUploaded([true, false]);
     axios({
       url: IMG_API,
       method: "POST",
-      data: image,
+      data: watchPic,
       headers: {
         Authorization: `Client-ID ${CLIENT_ID}`,
         "Content-Type": "multipart/form-data",
       },
+      onUploadProgress: () => setProgress(33),
     }).then((res) => {
+      setProgress(50);
       if (res.data.success) {
         const obj = watch;
         obj.image = res.data.data.link;
         setWatch(obj);
+        setProgress(66);
         axios({
           url: "http://localhost:8080/api/watches",
           method: "POST",
           data: {
             form: watch,
           },
+          onUploadProgress: () => setProgress(99),
         }).then((res) => {
-          console.log(res);
+          setProgress(100);
+          setUploaded([true, true]);
+          setTimeout(() => {
+            navigate("/");
+          }, 750);
         });
       } else {
         console.log(res);
@@ -133,11 +128,32 @@ const UploadForm = () => {
             onChange={(e) => handleInputs(e)}
           ></Form.Control>
         </Form.Group>
-        <div className="m-2 d-flex justify-content-center">
-          <Button variant="primary" type="submit">
-            Upload
-          </Button>
-        </div>
+        {uploaded[0] ? (
+          uploaded[1] ? (
+            <>
+              <ProgressBar
+                className="mt-1"
+                animated
+                now={progress}
+                label="Uploaded"
+              />
+              <h3 className="text-center">Upload Complete!</h3>
+            </>
+          ) : (
+            <ProgressBar
+              className="mt-1"
+              animated
+              now={progress}
+              label="Uploading"
+            />
+          )
+        ) : (
+          <div className="m-2 d-flex justify-content-center">
+            <Button variant="primary" type="submit">
+              Upload
+            </Button>
+          </div>
+        )}
       </Form>
     </>
   );

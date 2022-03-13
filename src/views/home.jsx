@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import Watch from "./components/card";
 
-const url = "http://localhost:8080/api/watches";
+const url = process.env.REACT_APP_WATCH_API;
 
 const Home = () => {
   const [watches, getWatches] = useState([]);
