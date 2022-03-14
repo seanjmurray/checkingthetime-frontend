@@ -3,7 +3,7 @@ import UploadForm from "./components/form";
 
 const Upload = () => {
   return (
-    <Container sm={10}>
+    <Container sm={8}>
       <Row>
         <UploadForm />
       </Row>

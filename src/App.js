@@ -7,16 +7,20 @@ import Footer from './views/components/footer'
 import Home from './views/home'
 import Profile from './views/profile'
 import Upload from './views/upload'
+import Error from './views/error'
 
 const App = () => {
   return (
     <>
       <NavBar />
+    <div  className="min-vh-100">
       <Routes>
         <Route index element={<Home />} />
         <Route path="profile" element={<Profile />} />
         <Route path='upload' element={<Upload />} />
+        <Route path="*" element={<Error />} />
       </Routes>
+    </div>
       <Footer />
     </>
   )
