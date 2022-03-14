@@ -8,6 +8,7 @@ import useInputHandler from "../../hooks/inputs";
 //Env Vars
 const IMG_API = process.env.REACT_APP_IMGUR_API;
 const CLIENT_ID = process.env.REACT_APP_IMGUR_CLIENT_ID;
+const WATCH_API = process.env.REACT_APP_WATCH_API;
 
 const UploadForm = () => {
   const { handleInputs, setWatch, watch, watchPic } = useInputHandler();
@@ -31,11 +32,11 @@ const UploadForm = () => {
       setProgress(50);
       if (res.data.success) {
         const obj = watch;
-        obj.image = res.data.data.link;
+        obj.img = res.data.data.link;
         setWatch(obj);
         setProgress(66);
         axios({
-          url: "http://localhost:8080/api/watches",
+          url: WATCH_API,
           method: "POST",
           data: {
             form: watch,
