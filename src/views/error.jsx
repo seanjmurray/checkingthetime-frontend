@@ -8,6 +8,7 @@ const Error = () => {
       <Container className="text-center" sm={10}>
         <div className="mt-5">
           <iframe
+            title="error gif"
             src="https://giphy.com/embed/tvGOBZKNEX0ac"
             width="480"
             height="204"
